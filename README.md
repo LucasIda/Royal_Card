@@ -250,4 +250,32 @@ protected override void HideTooltip()
 
 <hr>
 
-<p align="center">Desenvolvido pela DotsEng.Studio</p>
+<h2 align="center">🕹️ Como executar o jogo na sua máquina</h2>
+
+<p>Para rodar o <strong>Royal Poker</strong> localmente, siga as etapas abaixo:</p>
+
+<ol>
+  <li>
+    <strong>Instale o .NET Framework mais recente</strong><br>
+    Baixe a versão atual diretamente pelo site oficial da Microsoft:<br>
+    <a href="https://dotnet.microsoft.com/pt-br/download" target="_blank">
+      https://dotnet.microsoft.com/pt-br/download
+    </a>
+  </li>
+
+  <li>
+    <strong>Baixe e extraia o arquivo <code>RoyalPoker.zip</code></strong><br>
+    Após o download, descompacte o arquivo em uma pasta de sua preferência.
+  </li>
+
+  <li>
+    <strong>Execute o arquivo <code>RoyalPoker.exe</code></strong><br>
+    Dentro da pasta extraída, localize e abra o executável para iniciar o jogo.
+  </li>
+</ol>
+
+<p>Após seguir esses passos, o jogo estará pronto para uso na sua máquina! 🎮</p>
+
+<hr>
+
+<p align="center">Desenvolvido por DotsEng.Studio</p>
