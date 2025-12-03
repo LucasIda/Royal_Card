@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public static class JokerFactory
 {
     // Agora ele precisa da cena base do Curinga para instanciar
-    public static List<JokerCard> CreateJokers(PackedScene jokerScene, Func<int> getPlayerCoins)
+    public static List<JokerCard> CreateJokers(PackedScene jokerScene, Func<int> getPlayerCoins, Action<int> addPlayerMoney)
     {
         if (jokerScene == null)
         {
@@ -142,7 +142,61 @@ public static class JokerFactory
         Fabricio.Rarity = JokerRarity.Legendary;
         Fabricio.AddEffect(new EffectAddMultiplier(40, "Add 40 to your base multiplier"));
         list.Add(Fabricio);
+       
+       
+        var greedyJoker = jokerScene.Instantiate<JokerCard>();
+        greedyJoker.Initialize("Greedy Joker", GD.Load<Texture2D>("res://Sprites/Jokers/GreedyJoker.png"));
+        greedyJoker.Rarity = JokerRarity.Uncommon;
+        var diamondFilter = new FilterBySuit(Suit.Diamonds);
+        greedyJoker.AddEffect(new EffectAddMultPerFilteredCard(3,diamondFilter,"+3 Mult for each Diamond card played" ));
+        list.Add(greedyJoker);
         
+        var lustyJoker = jokerScene.Instantiate<JokerCard>();
+        lustyJoker.Initialize("Lusty Joker", GD.Load<Texture2D>("res://Sprites/Jokers/LustyJoker.png"));
+        lustyJoker.Rarity = JokerRarity.Uncommon;
+        var heartsFilter = new FilterBySuit(Suit.Hearts);
+        lustyJoker.AddEffect(new EffectAddMultPerFilteredCard(3,heartsFilter,"+3 Mult for each Heart card played"));
+        list.Add(lustyJoker);
+
+        var wrathfulJoker = jokerScene.Instantiate<JokerCard>();
+        wrathfulJoker.Initialize("Wrathful Joker", GD.Load<Texture2D>("res://Sprites/Jokers/WrathfulJoker.png")); 
+        wrathfulJoker.Rarity = JokerRarity.Uncommon;
+        var spadeFilter = new FilterBySuit(Suit.Spades);
+        wrathfulJoker.AddEffect(new EffectAddMultPerFilteredCard(3,spadeFilter,"+3 Mult for each Spade card played"));
+        list.Add(wrathfulJoker);
+
+        var gluttonousJoker = jokerScene.Instantiate<JokerCard>();
+        gluttonousJoker.Initialize("Gluttonous Joker", GD.Load<Texture2D>("res://Sprites/Jokers/GluttonousJoker.png"));
+        gluttonousJoker.Rarity = JokerRarity.Uncommon;
+        var clubFilter = new FilterBySuit(Suit.Clubs);
+        gluttonousJoker.AddEffect(new EffectAddMultPerFilteredCard(3,clubFilter,"+3 Mult for each Club card played"));
+        list.Add(gluttonousJoker);
+
+        var Scholar = jokerScene.Instantiate<JokerCard>();
+        Scholar.Initialize("Tri-Ace", GD.Load<Texture2D>("res://Sprites/Jokers/Scholar.png"));
+        Scholar.Rarity = JokerRarity.Rare;
+        var aceCounterFilter = new FilterByRank(Rank.Ace);
+        Scholar.AddEffect(new EffectAddMultPerFilteredCard(4,aceCounterFilter,"+4 Mult for each Ace card played"));
+        list.Add(Scholar);
+        
+        var bloodstone = jokerScene.Instantiate<JokerCard>();
+        bloodstone.Initialize("Bloodstone", GD.Load<Texture2D>("res://Sprites/Jokers/Bloodstone.png")); 
+        bloodstone.Rarity = JokerRarity.Rare;
+        var heartsCounterFilter = new FilterBySuit(Suit.Hearts);
+        bloodstone.AddEffect(new EffectMultiplyMultiplierPerFilteredCard(2, heartsCounterFilter,"x2 Mult for each Heart card played"));
+        list.Add(bloodstone);
+
+        var cavendish = jokerScene.Instantiate<JokerCard>();
+        cavendish.Initialize("Cavendish", GD.Load<Texture2D>("res://Sprites/Jokers/Cavendish.png"));
+        cavendish.Rarity = JokerRarity.Rare;
+        cavendish.AddEffect(new EffectMultiplyMultiplier(3,"Triple your base multiplier"));
+        list.Add(cavendish);
+
+        var RoughGem = jokerScene.Instantiate<JokerCard>();
+        RoughGem.Initialize("Rough Gem", GD.Load<Texture2D>("res://Sprites/Jokers/RoughGem.png"));
+        RoughGem.Rarity = JokerRarity.Common;
+        RoughGem.AddEffect(new EffectAddMoneyPerFilteredCard(1,diamondFilter,addPlayerMoney,"+$1 for each Diamond card played" ));
+        list.Add(RoughGem);
 
         return list;
     }
